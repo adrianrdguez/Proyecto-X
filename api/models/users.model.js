@@ -26,14 +26,24 @@ const userSchema = new mongoose.Schema({
     required: false,
     default: 'regular'
   },
-  birthDate: {
-    type: Date,
-    required: false
-  },
   createdAt: {
     type: Number,
     default: Date.now() // Get a timestamp :)
-  }
+  },
+  user_Ebooks: [{
+    Id:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"eBooks"
+    },
+    favorite:{
+      type: String,
+      enum: ["true","false"]
+    },
+    transaction: [{
+      type: mongoose.Schema.Types.ObjectId, 
+      ref:"history"
+    }]
+  }]
 })
 
 const userModel = mongoose.model('user', userSchema)
