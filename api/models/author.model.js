@@ -5,9 +5,6 @@ const authorSchema = new mongoose.Schema({
     type: String
   },
   author_Genres: {
-    type: String,
-  },
-  author_Genres: {
     type: Array,
   },
   author_Country: {
