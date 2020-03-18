@@ -10,10 +10,6 @@ const authorSchema = new mongoose.Schema({
   author_Country: {
     type: String,
   },
-  author_eBooks: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'eBooks'
-  }],
 })
 
 const authorModel = mongoose.model('author', authorSchema)
