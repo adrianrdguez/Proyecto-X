@@ -10,8 +10,9 @@
 
   const userId = localStorage.getItem('userId')
 
-  api.get(`users/${userId}`)
+  api.get(`users/${userId}`, { headers: { token: localStorage.getItem('token')}})
     .then(response => {
+      console.log(response)
       response.data.user_Ebooks.forEach(elem => {
         showEBook(elem)
       })

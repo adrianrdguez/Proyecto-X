@@ -32,6 +32,7 @@
         document.getElementById('newTodo').value = ''
       })
     }
+    
   })
 
   function addTodoToList (todo) {
