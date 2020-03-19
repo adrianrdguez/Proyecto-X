@@ -15,11 +15,17 @@
     location.assign('index.html')
   })
 
+  document.getElementById('library').addEventListener('click', () => {
+    localStorage.clear()
+    location.assign('library.html')
+  })
+
   document.getElementById('newTodo').addEventListener('keydown', (e) => {
     if (e.code === 'Enter') {
       api.post('todos',
         { todo: document.getElementById('newTodo').value },
-        { headers: { token: localStorage.getItem('token') } }).then(response => {
+        { headers: { token: localStorage.getItem('token') } })
+        .then(response => {
         addTodoToList(document.getElementById('newTodo').value)
         document.getElementById('newTodo').value = ''
       })
