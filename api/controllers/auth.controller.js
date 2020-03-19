@@ -18,8 +18,8 @@ function signup (req, res) {
 
   UserModel
     .create(userBody)
-    .then(() => {
-      const userData = { username: req.body.user_name, email: req.body.user_email }
+    .then((response) => {
+      const userData = { username: req.body.user_name, email: req.body.user_email, userId: response._id }
 
       const token = jwt.sign(
         userData,
@@ -43,8 +43,8 @@ function login (req, res) {
       bcrypt.compare(req.body.user_password, user.password, (err, result) => {
         if (err) { handleError(err) }
         if (!result) { return res.json({ error: `wrong password for ${req.body.user_email}` }) }
-
-        const userData = { username: user.name, email: user.email }
+        
+        const userData = { username: user.name, email: user.email, userId: user._id }
 
         const token = jwt.sign(
           userData,

@@ -16,8 +16,10 @@
   })
 
   document.getElementById('library').addEventListener('click', () => {
-    localStorage.clear()
     location.assign('library.html')
+  })
+  document.getElementById('collection').addEventListener('click', () => {
+    location.assign('collection.html')
   })
 
   /*document.getElementById('newTodo').addEventListener('keydown', (e) => {

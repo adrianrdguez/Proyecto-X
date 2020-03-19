@@ -18,9 +18,11 @@ document.getElementById('btn-signup').addEventListener('click', (event) => {
     // crea el token y me lo devuelve
     //
     .then(function (response) {
+    
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('name', response.data.username)
       localStorage.setItem('email', response.data.email)
+      localStorage.setItem('userId', response.data.userId)
       location.assign('inicio.html')
     })
     .catch(function (error) {
@@ -40,9 +42,11 @@ document.getElementById('btn-login').addEventListener('click', (event) => {
       if (response.data.error) {
         alert('WRONG PASSWORD')
       } else {
+      
         localStorage.setItem('token', response.data.token)
         localStorage.setItem('name', response.data.username)
         localStorage.setItem('email', response.data.email)
+        localStorage.setItem('userId', response.data.userId)
         location.assign('inicio.html')
       }
     })

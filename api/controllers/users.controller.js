@@ -18,6 +18,7 @@ function getAllUsers (req, res) {
 function getUserById (req, res) {
   UserModel
     .findById(req.params.id)
+    .populate('user_Ebooks.Id')
     .then(response => res.json(response))
     .catch((err) => handleError(err, res))
 }

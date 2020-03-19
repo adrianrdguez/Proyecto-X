@@ -12,10 +12,8 @@
  
   api.get('eBooks')
     .then(response => {
-      console.log(response)
       response.data.forEach(elem => {
         showEBook(elem)
-        console.log("hola")
       })
     })
     .catch(err => console.log(err))
@@ -36,8 +34,23 @@
   function showEBook(eBook) {
     const myBookList = document.getElementById('libros') // falta id
     const container = document.createElement('li')
-    container.innerHTML = `<input type="checkbox"> ${eBook.eBook_Name}`
-      myBookList.appendChild(container)
-  }                                   
+    
+    const input = document.createElement("input")
+    input.setAttribute("type", "checkbox")
+    container.appendChild(input)
+
+    const label = document.createElement("label")
+    label.innerText = eBook.eBook_Name
+    container.appendChild(label)
+    myBookList.appendChild(container)                     
+  }      
+  function shopEBook(eBooks){
+    const btn = document.getElementById("shop")
+    
+
+
+
+
+  } 
 
 })()
