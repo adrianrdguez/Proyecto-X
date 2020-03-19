@@ -4,11 +4,11 @@
     timeout: 1000
   })
 
-  if (localStorage.getItem('token')) {
+  /*if (localStorage.getItem('token')) {
     document.getElementById('username').innerText = localStorage.getItem('email')
   } else {
     location.href = 'auth.html'
-  }
+  }*/
 
   document.getElementById('logout').addEventListener('click', () => {
     localStorage.clear()
@@ -20,7 +20,7 @@
     location.assign('library.html')
   })
 
-  document.getElementById('newTodo').addEventListener('keydown', (e) => {
+  /*document.getElementById('newTodo').addEventListener('keydown', (e) => {
     if (e.code === 'Enter') {
       api.post('todos',
         { todo: document.getElementById('newTodo').value },
@@ -43,5 +43,5 @@
     response.data.forEach(todo => {
       addTodoToList(todo.task)
     })
-  })
+  })*/
 })()
