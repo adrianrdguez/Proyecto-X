@@ -7,6 +7,12 @@
   document.getElementById('read4').addEventListener('click', () => {
     location.assign('inicio.html')
   })
+  if (localStorage.getItem('token')) {
+    document.getElementById('username').innerText = localStorage.getItem('email')
+  } else {
+    location.href = 'auth.html'
+  }
+
   document.getElementById('logout').addEventListener('click', () => {
     localStorage.clear()
     location.assign('index.html')

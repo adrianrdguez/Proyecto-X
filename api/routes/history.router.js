@@ -7,9 +7,11 @@ const {
     updateHistory
 } = require('../controllers/history.controller')
 
-router.get('/', getAllHistory)
-router.get('/:id', getHistoryById)
-router.delete('/:id', deleteHistoryById)
-router.put('/:id', updateHistory)
+const { authUser } = require('../utils') // Authenticated Route
+
+router.get('/', authUser, getAllHistory)
+router.get('/:id', authUser, getHistoryById)
+router.delete('/:id', authUser, deleteHistoryById)
+router.put('/:id', authUser , updateHistory)
 
 module.exports = router

@@ -8,10 +8,12 @@ const {
   updateUser
 } = require('../controllers/users.controller')
 
-router.get('/', getAllUsers)
-router.post("/:id", addBookToUser)
-router.get('/:id', getUserById)
-router.delete('/:id', deleteUserById)
-router.put('/:id', updateUser)
+const { authUser } = require('../utils') // Authenticated Route
+
+router.get('/', authUser, getAllUsers)
+router.post("/:id", authUser, addBookToUser)
+router.get('/:id', authUser, getUserById)
+router.delete('/:id', authUser, deleteUserById)
+router.put('/:id', authUser, updateUser)
 
 module.exports = router

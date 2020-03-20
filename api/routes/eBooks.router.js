@@ -8,11 +8,13 @@ const {
     createEBook
 } = require('../controllers/eBooks.controller')
 
-router.get('/', getAllEBooks)
-router.get('/:id', getEBooksById)
-router.post("/", createEBook)
-router.delete('/:id', deleteEBooksById)
-router.put('/:id', updateEBooks)
+const { authUser } = require('../utils') // Authenticated Route
+
+router.get('/', authUser, getAllEBooks)
+router.get('/:id', authUser, getEBooksById)
+router.post("/", authUser, createEBook)
+router.delete('/:id', authUser, deleteEBooksById)
+router.put('/:id', authUser, updateEBooks)
 
 
 
