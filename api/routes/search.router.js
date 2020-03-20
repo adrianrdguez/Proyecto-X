@@ -6,9 +6,9 @@ const {
 } = require('../controllers/search.controller')
 
 
+const { authUser } = require('../utils') // Authenticated Route
 
-
-router.post("/", getSearch)
+router.post("/", authUser, getSearch)
 
 module.exports = router
 

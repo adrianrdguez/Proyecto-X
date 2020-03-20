@@ -8,11 +8,13 @@ const {
   deleteAuthorById
 } = require('../controllers/author.controller')
 
+const { authUser } = require('../utils') // Authenticated Route
 
-router.get('/', getAllAuthor)
-router.get('/:id', getAuthorById)
-router.post("/", createAuthor)
-router.delete('/:id', deleteAuthorById)
+
+router.get('/', authUser, getAllAuthor)
+router.get('/:id', authUser, getAuthorById)
+router.post("/", authUser, createAuthor)
+router.delete('/:id', authUser, deleteAuthorById)
 
 module.exports = router
 

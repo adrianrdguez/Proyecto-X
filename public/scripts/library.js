@@ -4,27 +4,46 @@
     timeout: 1000
   })
 
-  /*if (localStorage.getItem('token')) {
+  if (localStorage.getItem('token')) {
     document.getElementById('username').innerText = localStorage.getItem('email')
   } else {
     location.href = 'auth.html'
-  }*/
+  }
 
-  api.get('eBooks')
-    .then(response => {
-      response.data.forEach(elem => {
-        showEBook(elem)
+  function populateLibrary() {
+    api.get('eBooks', { headers: { token: localStorage.getItem('token') } })
+      .then(response => {
+        const myBookList = document.getElementById('libros')
+        myBookList.innerHTML = ''
+        response.data.forEach(elem => {
+          showEBook(elem)
+        })
       })
-    })
-    .catch(err => console.log(err))
+      .catch(err => console.log(err))
+  }
 
-  /*api.post('search')
-    .then(response => {
-      response.data.forEach(elem => {
-        showEBook(elem)
-      })
-    })
-    .catch(err => console.log(err))*/
+  populateLibrary()
+
+
+  document.getElementById("searchBook").addEventListener("keypress", e => {
+    const mySearch = document.getElementById('searchBook').value
+    if (e.keyCode == 13 && mySearch != '') {
+      api.post('search', { search: mySearch }, { headers: { token: localStorage.getItem('token') } })
+        .then(response => {
+          const myBookList = document.getElementById('libros')
+          myBookList.innerHTML = ''
+          response.data.ebook.forEach(objBook => {
+            showEBook(objBook)
+          })
+
+          response.data.author.forEach(objBook => {
+            showEBook(objBook)
+          })
+        })
+        .catch(err => console.log(err))
+    } else if (e.keyCode == 13) populateLibrary()
+  })
+
   const userId = localStorage.getItem('userId')
 
   document.getElementById('logout').addEventListener('click', () => {
@@ -49,30 +68,15 @@
 
   document.getElementById("shop").addEventListener("click", (event) => {
     const inputs = document.getElementsByTagName('input')
-
     for (var i = 1; i < inputs.length; i++) {
-      console.log(inputs[i].checked)
-      console.log(inputs[i].id)
       if (inputs[i].checked == true) {
-
         const user_Ebooks = {
           book: inputs[i].id
         }
-
-        api.post(`users/${userId}`, user_Ebooks)
+        api.post(`users/${userId}`, user_Ebooks, { headers: { token: localStorage.getItem('token') } })
           .then(response => console.log(response))
           .catch(err => console.log(err))
       }
-
     }
-
-    //location.assign('collection.html')
   })
-
-
-
-
-
-
-
 })()
