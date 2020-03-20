@@ -4,6 +4,8 @@ const api = axios.create({
   timeout: 1000
 })
 
+
+
 document.getElementById('btn-signup').addEventListener('click', (event) => {
   const newUser = {
     user_name: document.getElementById('user_name').value,

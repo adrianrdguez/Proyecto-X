@@ -4,13 +4,22 @@
     timeout: 1000
   })
 
+  document.getElementById('logout').addEventListener('click', () => {
+    localStorage.clear()
+    location.assign('index.html')
+  })
+  document.getElementById('read4').addEventListener('click', () => {
+    location.assign('inicio.html')
+  })
+
+
   /*if (localStorage.getItem('token')) {
     document.getElementById('username').innerText = localStorage.getItem('email')
   } else {
     location.href = 'auth.html'
   }*/
-
-  api.get('eBooks')
+  api.g
+  et('eBooks')
     .then(response => {
       response.data.forEach(elem => {
         showEBook(elem)
@@ -26,11 +35,6 @@
     })
     .catch(err => console.log(err))*/
   const userId = localStorage.getItem('userId')
-
-  document.getElementById('logout').addEventListener('click', () => {
-    localStorage.clear()
-    location.assign('index.html')
-  })
 
   function showEBook(eBook) {
     const myBookList = document.getElementById('libros') // falta id

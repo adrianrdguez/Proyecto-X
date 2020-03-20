@@ -3,6 +3,10 @@
     baseURL: 'api/',
     timeout: 1000
   })
+
+  document.getElementById('read4').addEventListener('click', () => {
+    location.assign('inicio.html')
+  })
   document.getElementById('logout').addEventListener('click', () => {
     localStorage.clear()
     location.assign('index.html')

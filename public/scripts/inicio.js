@@ -22,6 +22,10 @@
     location.assign('collection.html')
   })
 
+  document.getElementById('read4').addEventListener('click', () => {
+    location.assign('inicio.html')
+  })
+
   /*document.getElementById('newTodo').addEventListener('keydown', (e) => {
     if (e.code === 'Enter') {
       api.post('todos',
